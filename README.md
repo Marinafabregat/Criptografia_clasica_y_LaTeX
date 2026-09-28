@@ -44,14 +44,6 @@ fórmulas matemáticas y la bibliografía.
 | `P. con fondos.tex`, `Pautas P.tex` | Pautas y ejercicios de apoyo |
 | `build/` | Archivos auxiliares de compilación (ignorados por git) |
 
-## Requisitos
-
-- **TeX Live**, probado con la instalación completa de TeX Live 2023.
-- Herramientas: `latexmk`, `pdflatex` y `bibtex`.
-- Paquetes: `babel` (español), `amsmath`, `amssymb`, `graphicx`, `xcolor`,
-  `tikz`, `hyperref`, `multicol`, `geometry`, `parskip`, `ragged2e`,
-  `multirow`, `wrapfig` y `tocbibind`.
-
 ## Licencia
 
 Ver el archivo [LICENSE](LICENSE).
