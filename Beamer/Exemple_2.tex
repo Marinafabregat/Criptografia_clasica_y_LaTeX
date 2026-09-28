@@ -1,0 +1,442 @@
+
+\documentclass{beamer}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[catalan]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stackrel}
+\usetheme{Warsaw}
+\justifying
+
+\beamertemplatetransparentcovereddynamic
+%\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+
+\begin{document}
+\title{Matemàtiques Segon Batxillerat}
+\author{Artur Arroyo}
+\date{\today}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}\frametitle{Matemàtiques segon batxillerat}\tableofcontents[pausesubsections]
+\end{frame}
+
+
+\section{Matrius}
+
+\begin{frame}{Definició de matriu}
+\begin{block}{Definició}
+Una matriu de \emph{m files i n columnes} és una taula de $m\times n$ nombres \emph{ordenats} de la forma:
+\[A=\left(\begin{array}{cccccc}
+a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+a_{21} & a_{22} & a_{23} & \cdots & a_{2n}\\
+a_{31} & a_{32} & a_{33} & \cdots & a_{3n}\\
+\cdots & \cdots & \cdots & \cdots & \cdots\\
+a_{m1} & a_{m2} & a_{m3} & \cdots & a_{mn}
+\end{array}\right)
+\]
+El subíndex $i$ indica la fila i el $j$ la columna que ocupa cada element $a_{ij}$ de la matriu i sovint, es pot representar la matriu per $(a_{ij})$.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Dimensió d'una matriu}
+Donada una matriu de  \emph{m files i n columnes} direm que la matriu és de dimensió $m\times n$.
+\end{block}
+\begin{exampleblock}{Exemple}
+La matriu \[M=\left(\begin{array}{ccc}
+-7 & \frac{3}{5} & 0\\
+11 & -4 & 1
+\end{array}\right)
+\]
+té dimensió $2\times3$, té dues files i tres columnes.
+\end{exampleblock}
+%\end{frame}
+%\begin{frame}
+\begin{block}{Matrius iguals}
+Direm que dues matrius $A$ i $B$ són iguals si i només si tenen la mateixa dimensió i, a més, els elements coincideixen terme a terme. Dit d'una altra manera
+$$A=B\Leftrightarrow a_{ij}=b_{ij}\quad\forall i,j$$
+\end{block}
+\end{frame}
+
+\begin{frame}{Classificació de matrius}
+\begin{itemize}
+\item
+Una matriu fila és aquella que té com a dimensió $1\times n$.
+\item
+Una matriu columna és una matriu que té com a dimensió $m\times1$.
+\item
+Una matriu zero és aquella en la qual tots els elements són zero.
+\item
+Una matriu quadrada és aquella que té el mateix nombre de files que de columnes. La seva dimensió és $n\times n$ i direm que la matriu és d'ordre $n$.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\begin{exampleblock}{Exemples}
+Siguin:
+$A=\left(\begin{array}{ccc}
+-2 & 7 & 0
+\end{array}\right)
+$
+$B=\left(\begin{array}{c}
+-4\\
+2
+\end{array}\right)
+$
+$C=\left(\begin{array}{cc}
+0 & 0\\
+0 & 0\\
+0 & 0
+\end{array}\right)
+$\\ Llavors, $A$ és una matriu fila, $B$ és una matriu columna i $C$ és una matriu nul·la o zero de dimensió $3\times 2$.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Tipus de matrius quadrades}
+\begin{block}{Diagonal principal}
+La diagonal principal d'una matriu està formada pels elements $a_{ii}$ de la matriu, és a dir, el $a_{11}$, el $a_{22}$, el $a_{33}$, etc.
+\end{block}
+Segons els elements que la formen, una matriu pot ser:
+\begin{itemize}
+\item
+Matriu triangular superior: tots els elements situats per sota de la diagonal principal són zero.
+\item
+Matriu triangular inferior: tots els elements situats per sobre de la diagonal principal són zero.
+\item
+Matriu diagonal: tots els elements de la matriu són zero llevat dels de la diagonal principal.
+\item
+Matriu identitat o unitat: és una matriu diagonal en la que a més els elements de la diagonal principal són 1.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\begin{exampleblock}{Exemples}
+$A=\left(\begin{array}{ccc}
+2 & 0 & 0\\
+0 & -7 & 0\\
+0 & 0 & 1\end{array}\right)$
+$B=\left(\begin{array}{cc}
+1 & 0\\
+0 & 1\\
+\end{array}\right)$
+$C=\left(\begin{array}{cccc}
+-3 & 0 & 0 & 0\\
+2 & 4 & 0 & 0\\
+7 & 5 & 1 & 0\\
+4 & 6 & 9 & 6\end{array}\right)$
+
+\bigskip
+Llavors, $A$ és una matriu diagonal, $B$ és la matriu identitat d'ordre 2, que també s'escriu ($Id_{2}$), i $C$ és una matriu triangular inferior.
+\end{exampleblock}
+\end{frame}
+
+\subsection{Operacions amb matrius}
+\begin{frame}\frametitle{Suma de matrius}
+\begin{block}{Definició}
+La suma de dues matrius $A=(a_{ij})$ i $B=(b_{ij})$ dóna com a resultat una altra matriu $C$ que té per elements $c_{ij}=a_{ij}+b_{ij}$.
+\end{block}
+\begin{exampleblock}{Exemple}
+Donades $A=\left(\begin{array}{ccc}
+3 & 3 & 2\\
+7 & -5 & 6\end{array}\right)$ $B=\left(\begin{array}{ccc}
+4 & 5 & 0\\
+-2 & 6 & -3\end{array}\right)$
+
+llavors $A+B=\left(\begin{array}{ccc}
+7 & 8 & 2\\
+5 & 1 & 3\end{array}\right)$
+\end{exampleblock}
+\begin{alertblock}{Atenció!}
+No és possible sumar dues matrius de dimensions diferents.
+\end{alertblock}
+\end{frame}
+\begin{frame}\frametitle{Propietats de la suma de matrius}
+Les propietas que té l'operació suma de matrius són
+\begin{enumerate}
+\item
+Commutativa: $A+B=B+A$
+\item
+Associativa: $A+(B+C)=(A+B)+C$
+\item
+Element neutre: l'element neutre respecte la suma de matrius és la matriu zero de la dimensió corresponent. $A+0=A$
+\item
+Element oposat: l'element oposat (o invers respecte la suma) d'una matriu $A$ és la matriu que té tots els elements iguals que $A$ però amb el signe canviat. La matriu oposada de $A$ s'escriu $-A$.
+\end{enumerate}
+Aquesta darrera propietat ens permet, en particular, restar dues matrius de la següent manera $A-B=A+(-B)$.
+\end{frame}
+
+\begin{frame}\frametitle{Producte d'una matriu per un nombre real}
+\begin{block}{Definició}
+El producte d'una matriu $A$ per un nombre real $\alpha$ (també anomenat \emph{escalar}), dóna com a resultat una matriu $B$ de la mateixa dimensió que $A$ amb elements $b_{ij}=\alpha\cdot a_{ij}$.
+\end{block}
+\begin{exampleblock}{Exemple}
+Donada la matriu $A=\left(\begin{array}{ccc}
+2 & -3 & 5\\
+0 & 1 & 7\end{array}\right)$, i $\alpha_{1}=2,$$\;\alpha_{2}=-3$ tenim $\alpha_{1}\cdot A=2\cdot\left(\begin{array}{ccc}
+2 & -3 & 5\\
+0 & 1 & 7\end{array}\right)=\left(\begin{array}{ccc}
+4 & -6 & 10\\
+0 & 2 & 14\end{array}\right)$, i $\alpha_{2}\cdot A=-3\cdot\left(\begin{array}{ccc}
+2 & -3 & 5\\
+0 & 1 & 7\end{array}\right)=
+\left(\begin{array}{ccc}
+-6 & 9 & -15\\
+0 & -3 & -21\end{array}\right)$
+\end{exampleblock}
+\end{frame}
+\begin{frame}{Propietats del producte d'un escalar per una matriu}
+\begin{enumerate}
+\item
+Distributiva respecte la suma de matrius: $\alpha\cdot(A+B)=\alpha\cdot A+\alpha\cdot B$
+\item
+Distributiva respecte la suma d'escalars: $(\alpha+\beta)\cdot A=\alpha\cdot A+\beta\cdot A$
+\end{enumerate}
+\begin{alertblock}{Les matrius formen un $\mathbb{R}-$espai vectorial}
+És clar, ja que si considerem el conjunt de les matrius de dimensió $m\times n$, fixada, $\mathcal{M}_{m\times n}$ tenim:
+\begin{itemize}
+\item
+$\forall A, B\in \mathcal{M}_{m\times n},\quad A+B\in \mathcal{M}_{m\times n}$
+\item
+$\forall A\in \mathcal{M}_{m\times n},\quad \forall\alpha\in\mathbb{R},\quad \alpha\cdot A\in\mathcal{M}_{m\times n}$
+\end{itemize}
+\end{alertblock}
+\end{frame}
+\begin{frame}\frametitle{Producte de matrius}
+\begin{block}{Definició}
+El producte d'una matriu $A$, de dimensió $m\times n$ per una matriu $B$, de dimensió $n\times p$, és una altra matriu $C$ de dimensió $m\times p$, l'element $c_{ij}$ de la qual l'obtenim multiplicant la fila i-èssima de la primera matriu per la columna j-èssima de la segona matriu.
+\end{block}
+\begin{exampleblock}{Exemple}
+Donades $A=\left(\begin{array}{ccc}
+5 & -3 & 4\\
+0 & 1 & 2\end{array}\right)$ i $B=\left(\begin{array}{cc}
+4 & 2\\
+0 & 5\\
+1 & 3\end{array}\right)$
+
+veiem que es poden multiplicar i que el seu producte serà una matriu de dimensió $2\times2$.
+\end{exampleblock}
+\end{frame}
+\begin{frame}
+\begin{exampleblock}{Producte de matrius}
+ $$\stackbin[{\color{blue}2}\times{\color{red}3}]{}{\left(\begin{array}{ccc}
+5 & -3 & 4\\
+0 & 1 & 2\end{array}\right)}\cdot\stackbin[{\color{red}3}\times{\color{blue}2}]{}{\left(\begin{array}{cc}
+4 & 2\\
+0 & 5\\
+1 & 3\end{array}\right)}=\stackbin[{\color{blue}2}\times{\color{blue}2}]{}{\left(\begin{array}{cc}
+c_{11} & c_{12}\\
+c_{21} & c_{22}\end{array}\right)}$$
+
+Per calcular els $c_{ij}$ ho farem pas a pas. El terme $c_{11}$ ve de multiplicar la primera fila de la primera matriu per la primera columna de la segona matriu, com si es tractés
+del producte escalar de dos vectors
+$$\left(\begin{array}{ccc}
+{\color{red}5} & {\color{orange}-3} & {\color{blue}4}\\
+0 & 1 & 2\end{array}\right)\cdot\left(\begin{array}{cc}
+{\color{red}4} & 2\\
+{\color{orange}0} & 5\\
+{\color{blue}1} & 3\end{array}\right)=\left(\begin{array}{cc}
+{\color{red}5}\cdot{\color{red}4}+ ({\color{orange}-3})\cdot{\color{orange}0}+{\color{blue}4}\cdot{\color{blue}1}& c_{12}\\
+c_{21} & c_{22}\end{array}\right)$$
+\end{exampleblock}
+\end{frame}
+\begin{frame}
+\begin{exampleblock}{Producte de matrius}
+de forma que tenim $$\left(\begin{array}{ccc}
+{\color{red}5} & {\color{red}-3} & {\color{red}4}\\
+0 & 1 & 2\end{array}\right)\left(\begin{array}{cc}
+{\color{red}4} & 2\\
+{\color{red}0} & 5\\
+{\color{red}1} & 3\end{array}\right)\left(\begin{array}{cc}
+{\color{red}24} & c_{12}\\
+c_{21} & c_{22}\end{array}\right)$$ i de forma similar, $$\left(\begin{array}{ccc}
+{\color{red}5} & {\color{red}-3} & {\color{red}4}\\
+0 & 1 & 2\end{array}\right)\left(\begin{array}{cc}
+4 & {\color{red}2}\\
+0 & {\color{red}5}\\
+1 & {\color{red}3}\end{array}\right)\left(\begin{array}{cc}
+24 & {\color{red}7}\\
+c_{21} & c_{22}\end{array}\right)$$
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Producte de matrius}
+$$\left(\begin{array}{ccc}
+5 & -3 & 4\\
+{\color{red}0} & {\color{red}1} & {\color{red}2}\end{array}\right)\left(\begin{array}{cc}
+{\color{red}4} & 2\\
+{\color{red}0} & 5\\
+{\color{red}1} & 3\end{array}\right)\left(\begin{array}{cc}
+24 & 7\\
+{\color{red}2} & c_{22}\end{array}\right)$$
+
+i finalment, $$\left(\begin{array}{ccc}
+5 & -3 & 4\\
+{\color{red}0} & {\color{red}1} & {\color{red}2}\end{array}\right)\left(\begin{array}{cc}
+4 & {\color{red}2}\\
+0 & {\color{red}5}\\
+1 & {\color{red}3}\end{array}\right)\left(\begin{array}{cc}
+24 & 7\\
+2 & {\color{red}11}\end{array}\right)$$
+\end{exampleblock}
+\end{frame}
+\begin{frame}\frametitle{Propietats del producte de matrius}
+\begin{enumerate}
+\item
+Associativa: $(A\cdot B)\cdot C=A\cdot(B\cdot C)$
+\item
+Element neutre: si $A$ té dimensions $m\times n$, llavors $Id_{m}\cdot A=A$ i $A\cdot Id_{n}=A$
+\item
+Distributiva respecte el producte:
+\begin{enumerate}
+\item
+per l'esquerra: $A\cdot(B+C)=A\cdot B+A\cdot C$
+\item
+per la dreta: $(B+C)\cdot A=B\cdot A+C\cdot A$
+\end{enumerate}
+\end{enumerate}
+\begin{alertblock}{Atenció!}
+El producte de matrius en general no és commutatiu. D'entrada, per poder multiplicar dues matrius s'ha de complir la condició sobre les dimensions. Per una altra banda fins i tot matrius quadrades no commuten entre elles.
+\end{alertblock}
+\end{frame}
+\begin{frame}
+\begin{exampleblock}{Exemple 1.}
+Siguin $\stackbin[m\times n]{}{A}$, $\stackbin[n\times r]{}{B}$, $\stackbin[r\times r]{}{C}$ i $\stackbin[r\times r]{}{D}$, llavors:
+ \begin{itemize}
+ \item
+ els productes $\stackbin[m\times n]{}{A}\cdot\stackbin[n\times r]{}{B}$, $\stackbin[n\times r]{}{B}\cdot\stackbin[r\times r]{}{C}$ i $\stackbin[r\times r]{}{C}\cdot\stackbin[r\times r]{}{D}$ estan ben definits.
+\item
+Els productes $\stackbin[n\times r]{}{B}\cdot\stackbin[m\times n]{}{A}$ i $\stackbin[r\times r]{}{C}\cdot\stackbin[n\times r]{}{B}$ no estan ben definits per qüestió de dimensions.
+\end{itemize}
+\end{exampleblock}
+\begin{exampleblock}{Exemple 2.}
+ Finalment, en general $\stackbin[r\times r]{}{C}\cdot\stackbin[r\times r]{}{D}\neq\stackbin[r\times r]{}{D}\cdot\stackbin[r\times r]{}{C}$
+
+Per exemple
+$\left(\begin{array}{cc}
+1 & 2\\
+0 & 1\end{array}\right)\cdot\left(\begin{array}{cc}
+1 & 0\\
+2 & 1\end{array}\right)=\left(\begin{array}{cc}
+5 & 2\\
+2 & 1\end{array}\right)$
+\bigskip
+mentre que\\
+a l'inrevés $\quad\left(\begin{array}{cc}
+1 & 0\\
+2 & 1\end{array}\right)\cdot\left(\begin{array}{cc}
+1 & 2\\
+0 & 1\end{array}\right)=\left(\begin{array}{cc}
+1 & 2\\
+2 & 5\end{array}\right)$
+\end{exampleblock}
+\end{frame}
+%\end{frame}
+\subsection{Matriu transposada}
+\begin{frame}\frametitle{Matriu transposada}
+\begin{block}{Definició}
+Donada $A$ matriu de dimensió $m\times n$, definim la seva transposada $A^{t}$, com la matriu de dimensió $n\times m$ que té per files les columnes de $A$.
+\end{block}
+\begin{exampleblock}{Exemple}
+Amb $A=\stackbin[2\times3]{}{\left(\begin{array}{ccc}
+3 & -3 & 3\\
+0 & 1 & 2\end{array}\right)}$, llavors $\; A^{t}=\stackbin[3\times2]{}{\left(\begin{array}{cc}
+3 & 0\\
+-3 & 1\\
+3 &2 \end{array}\right)}$
+\end{exampleblock}
+\end{frame}
+\begin{frame}\frametitle{Propietats de la matriu transposada}
+\begin{enumerate}
+\item
+ $(A^{t})^{t}=A$
+\item
+$(A+B)^{t}=A^{t}+B^{t}$
+\item
+$(\alpha\cdot A)^{t}=\alpha\cdot(A)^{t}$
+\item
+$(A\cdot B)^{t}=B^{t}\cdot A^{t}$
+\end{enumerate}
+Cal recordar especialment l'ordre en que apareixen les matrius en la darrera propietat. El canvi es deu a la no commutativitat de les matrius.
+\end{frame}
+\begin{frame}\frametitle{Matrius simètriques i antisimètriques}
+\begin{block}{Definició}
+\begin{itemize}
+\item
+Diem que una matriu quadrada és \emph{simètrica} si coincideix amb la seva transposada, $A=A^{t}$
+\item
+Diem que una matriu quadrada és \emph{antisimètrica} si la seva oposada coicideix amb la seva transposada $-A=A^{t}$
+\end{itemize}
+\end{block}
+\begin{block}{Descomposició en matriu simétrica i antisimétrica}
+Sigui $A$ matriu quadrada qualsevol, llavors sempre es pot trobar una descomposició de $A$ com a suma d'una matriu simètrica i una altra antisimètrica.
+$$A=\frac{A+A^{t}}{2}+\frac{A-A^{t}}{2}$$
+\end{block}
+\end{frame}
+\subsection{Rang d'una matriu}
+\begin{frame}\frametitle{Combinacions lineals de files en una matriu}
+\begin{block}{Definició}
+Diem que una fila $F_{i}$ no nul·la \emph{depèn linealment} de les files $F_{j_{1}},\; F_{j_{2}}\ldots F_{j_{m}}$ si se satisfà la igualtat:
+$$F_{i}=\alpha_{1}F_{j_{1}}+\alpha_{2}F_{j_{2}}+\cdots +\alpha_{m}F_{j_{m}}$$
+Diem que una fila és \emph{linealment independent} si no depèn linealment de cap altra fila de la matriu.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Exemple}
+Si considerem la matriu $$\left(\begin{array}{cccc}
+1 & 2 & 3 & 4\\
+2 & 4 & 6 & 8\\
+-1 & 2 & 3 & 4\\
+0 & 4 & 6 & 8\end{array}\right)$$ Es pot comprovar fàcilment que $F_{2}= 2F_{1}$, i per tant $F_{2}$ no és linealment independent. De la mateixa manera, $F_{4}= F_{1}+F_{3}$ de forma que $F_{4}$ tampoc és linealment independent, queden doncs, com a files linealment independents, $F_{1}$ i $F_{3}$.
+
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}\frametitle{Rang d'una matriu}
+\begin{block}{Definició}
+El rang d'una matriu $A$, rang(A) és el nombre de files o de columnes linealment independents que té la matriu.
+\end{block}
+Per determinar el rang d'una matriu donada, en general ho farem sempre per files, i farem servir el que es coneix com a mètode de Gauss, que consisteix en convertir la matriu inicial en una que sigui triangular superior, és a dir, que tingui zeros a sota de la diagonal principal. Aquest procés es coneix com \emph{triangular la matriu} i el rang de la matriu serà el nombre de files no nul·les que té la matriu triangulada.
+\end{frame}
+
+\begin{frame}\frametitle{Càlcul del rang d'una matriu}
+Hi ha certes transformacions permeses, anomenades \emph{transformacions elementals}, que deixen invariant el rang d'una matriu. Aquestes són:
+\begin{itemize}
+\item
+Intercanviar dues files entre elles.
+\item
+Multiplicar una fila per un escalar
+\item
+Substituir una determinada fila per una combinació lineal d'altres.
+\end{itemize}
+\begin{exampleblock}{Exemple 1.}
+$\left(\begin{array}{ccc}
+1 & 2 & -1\\
+3 & 0 & 1\end{array}\right)\sim\left(\begin{array}{ccc}
+{\color{orange}1} & 2 & -1\\
+0 & {\color{orange}6} & -4\end{array}\right)$  I per tant el rang és 2. Hem substituit la segona fila, $F_{2}$ per la combinació lineal $3F_{1}-F_{2}$ i així queda triangulada la matriu. Noteu el símbol ($\mathbf{\sim}$) que es fa servir per indicar que, tot i que les matrius \textbf{no} són iguals, tenen el mateix rang
+\end{exampleblock}
+\end{frame}
+\subsection{Matriu inversa. Mètode de Gauss-Jordan}
+
+\begin{frame}
+\begin{exampleblock}{Exemple 2}
+$\left(\begin{array}{cccc}
+1 & 4 & 5 & 3\\
+3 & 0 & 1\end{array}\right)\sim$
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+
+\end{document}

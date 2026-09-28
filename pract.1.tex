@@ -1,0 +1,62 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[a4paper]{geometry}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{verbatim}
+
+ 
+ \begin{document}
+ 
+ \textbf{\Large II Deduction of the new conserved tensor for $R=0$ }
+ 
+ Otherwise said, throughtout this paper we willl consider the metric tensor  $g_{\alpha\beta}$ to have signature $\left(-,+,+,+\right)$. The convenetion for indices on yhe Riemann tensor that will be used is defined through the Ricci identities:
+ 
+ 
+ \begin{equation} \label{1}
+     \left(\nabla_{\alpha}\nabla_{\beta}-\nabla_{\beta}\nabla_{\alpha}\right)\upsilon_{\lambda}=-R^{\sigma}\ _{\lambda\alpha\beta} \upsilon_{\sigma},
+ \end{equation}
+ 
+ where $\upsilon_{\alpha}$ is an arbitrary 1-form. The Ricci tensor and the scalar curvature are defined as usual: $ R_{\alpha\beta}\equiv R^{\sigma}_{\alpha\sigma\beta}$ and $R\equiv R^{\sigma}_{\sigma}$. We alse recall the Riemann symmetries and the first and second bianchi identities:
+ 
+ \begin{equation}
+   R_{\alpha\beta\lambda\mu}=R_{[\alpha\beta][\lambda\mu]}=R_{\lambda\mu\alpha\beta},    R_{[\alpha\beta\lambda]\mu}=0,
+    \nabla_ {[\nu} R_{\alpha\beta]{\lambda\mu}}=0  
+ \end{equation}
+ 
+The procedure we are going to use to find the conserved tensor starts from the expression for the divergence of the Bel tensor [\ref{1}]:
+
+\begin{equation}
+     \nabla_{\alpha}T^{\alpha\beta\lambda\mu}=R^{\beta\lambda}_{\rho\sigma}J^{\lambda\sigma\rho}+R^{\beta\lambda}_{\rho\sigma}J^{\lambda\sigma\rho}-\frac{1}{2}g^{\lambda\mu}R^{\beta}_{\rho\sigma\gamma}J^{\sigma\gamma\rho}
+\end{equation}
+
+where the Bel tensor $T^{\alpha\beta\lambda\mu}$ and $J^{\alpha\beta\lambda}$ are defined as follows:
+
+\begin{equation} \label{eq1} 
+\begin{split}
+    T^{\alpha\beta\lambda\mu} & \equiv \frac{1}{2}\left(R^{\alpha\rho\lambda\sigma}R^{\beta\mu}_{\rho\sigma}+\ast R\ast ^{\beta\rho\lambda\sigma}\ast R\ast^{\beta\mu}_{\rho\sigma}+\ast R^{\sigma\rho\lambda\sigma}\ast R^{\beta\mu}_{\rho\sigma}+ R\ast^{\sigma\rho\lambda\sigma} R\ast^{\beta\mu}_{\rho\sigma} \right) \\
+    J^{\lambda\mu\beta}& \equiv \nabla^{\lambda}R^{\mu\beta}-\nabla^{\mu}R^{\lambda\beta}= \nabla _{\sigma}R^{\mu\lambda\beta\sigma},
+\end{split}
+\end{equation}
+
+being "$*$" the usual dual operator acting over any pair of antisymmetric indices:
+
+\begin{equation}
+    \ast R_{\alpha\beta\lambda\mu} \equiv \tfrac{1}{2}\eta _{\alpha\beta\sigma\rho}R^{\sigma\rho}_{\lambda\mu}, R\ast _{\alpha\beta\lambda\mu} \equiv \tfrac{1}{2}\eta _{\lambda\mu\sigma\rho}R_{\alpha\beta}^{\sigma\rho}, \ast R \ast _{\alpha\beta\lambda\mu} \equiv \tfrac{1}{4} \eta _{\alpha\beta\gamma\delta}\eta _{\lambda\mu\sigma\rho}R^{\gamma\delta\sigma\rho},
+\end{equation}
+and $\eta\alpha\beta\lambda\mu$ is the canonical volume 4-form. our purpose now is to work out the right hand side (r.h.s.) of equation (3) in order to convert it into a global divergence. To that end, we repeatedly integrate by parts and make use of equation (1,2). 
+
+To begin with, the last term in equation (3) can be easily transformed into a divergence, by means of the Ricci and Bianchi identities  (1,2).
+
+\verbatim
+\begin{equation}
+    -\frac{1}{2}g^{\lambda\mu}R^{\beta}_{\rho\sigma\gamma}J^{\sigma\gamma\rho}= -g ^{\lambda\mu} \nabla _{\alpha}\nabla_{\rho} J^{\alpha\rho\beta}. 
+\end{equation}
+\end{verbatim}
+$\beta$
+
+
+\end{document}

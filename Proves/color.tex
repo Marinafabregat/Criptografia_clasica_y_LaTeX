@@ -1,0 +1,328 @@
+\documentclass[a4paper,12pt]{article}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+\usepackage{amssymb}
+\usepackage[symbol]{footmisc}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{eurosym}
+\usepackage{wasysym}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{arrows,positioning,shapes,fit,calc}
+\pgfplotsset{compat=1.13}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\begin{document}
+
+\definecolor{1}{HTML}{FF4B1F}
+\definecolor{2}{HTML}{FF9068}
+\definecolor{3}{HTML}{EECDA3}
+\definecolor{4}{HTML}{EF629F}
+\definecolor{5}{HTML}{2980B9}
+\definecolor{6}{HTML}{2C3E50}
+\definecolor{7}{HTML}{C2E59C}
+\definecolor{8}{HTML}{64B3F4}
+\definecolor{9}{HTML}{8E9BAE}
+\definecolor{gradient1}{HTML}{FEAC5E}
+\definecolor{gradient2}{HTML}{C779D0}
+\definecolor{gradient3}{HTML}{4BC0C8}
+\definecolor{caribbeangreen}{rgb}{0.0, 0.8, 0.6}
+
+    \noindent\makebox[\textwidth][c]{\huge Colors i \LaTeX}
+\bigskip
+
+\section{Tipus de codificacions}
+
+Aquest document no pretén ser ni exhaustiu ni tan sols una introducció. Només et comento el que jo sé i he anat fent servir. Atenció perquè al llarg del document apareixeran algunes parts del text acolorides ja que he fet ús del paquet \textbackslash\emph{hyperref} per posar enllaços a planes web externes (també hi ha un enllaç a una secció del document per tal que vegis com funciona i ho puguis fer servir tu si vols). Això no té res a veure amb el propòsit del document que era mostrar com es pot fer servir el color en el text en TeX. Al paquet \textbackslash\emph{hyperref} es pot demanar que els enllaços no apareguin acolorits, però he pensat que així els veuràs millor. 
+\subsection{Colors HTML}
+Utilitzant aquest mètode el que fem és triar un color que ens agradi i \emph{posar-li} un nom per fer referència a ell quan el necessitem més endavant al codi. 
+
+\begin{verbatim}
+\definecolor{1}{HTML}{FF4B1F}
+\end{verbatim}
+
+Aquí hem anomenat ``1'' al color html FF4B1F. Llavors, escrivint 
+
+\begin{verbatim}
+\textcolor{1}{qualsevol cosa}
+\end{verbatim}
+
+tindrem el text acolorit (a la secció \hyperref[sec:us]{2.1} parlo més d'això).
+Aquesta és la codificació RGB (vermell, verd, blau) que fan servir típicament els dispositius que emeten llum; pantalles de TV, monitors d'ordinador, etc. La idea és generar colors variant la intensitat d'aquests tres. Els valors es codifiquen en el sistema de numeració hexadecimal, de manera que per exemple, tenim
+
+\begin{center}
+\begin{tikzpicture}
+\filldraw[red,draw=black](-2,0.5)rectangle(-1,1);
+\filldraw[green,draw=black](-0.5,0.5)rectangle(0.5,1);
+\filldraw[blue,draw=black](1,0.5)rectangle(2,1);
+\draw(-2,-0.5)rectangle(-1,-1);
+\filldraw[black,draw=black](-0.5,-0.5)rectangle(0.5,-1);
+\filldraw[1,draw=black](1,-0.5)rectangle(2,-1);
+\node[scale=0.55] at (-1.5,0.25) {$\#FF0000$};
+\node[scale=0.55] at (0,0.25) {$\#00FF00$};
+\node[scale=0.55] at (1.5,0.25) {$\#0000FF$};
+\node[scale=0.55] at (-1.5,-1.25) {$\#FFFFFF$};
+\node[scale=0.55] at (0,-1.25) {$\#000000$};
+\node[scale=0.55] at (1.5,-1.25) {$1\equiv\#FF4B1F$};
+\end{tikzpicture}
+\end{center}
+
+Com pots veure, el vermell ``pur'' l'aconseguim activant al màxim el vermell i posant a zero el verd i el blau (FF0000). El blanc és la barreja dels tres al màxim (FFFFFF) i el negre s'obté posant-los tots a zero (000000). T'he afegit el que hem definit abans com 1 perquè vegis com queda.
+Per triar-los pots visitar qualsevol plana web a on en parli, per exemple, en aquesta tens els 140 colors que qualsevol navegador reconeix pel seu nom.
+
+\begin{center}
+\url{https://htmlcolorcodes.com/color-names/}
+\end{center}
+\bigskip
+
+ Alerta que en \TeX\; no passa el mateix, hi ha molts menys que es pugui fer servir pel seu nom. En qualsevol cas, compte perquè les lletres que corresponen al codi hexadecimal s'han de posar en majúscules, si no el compilador pot donar errors. 
+
+A vegades es poden trobar colors codificats com 
+$$(255,87,51)$$
+això no és més que l'expressió decimal de la terna
+$$(FF5733)$$
+en hexadecimal. Per tant, és fàcil passar d'un tipus a un altre. Podem fer servir qualsevol calculadora que treballi amb base 16, o fer el càlcul a mà. Fixa't que quan escrivim el color en hexadecimal no separem cada component amb comes; en canvi, quan  escrivim els valors de vermell, verd i blau sobre 255 llavors sí que separem cada color.
+\bigskip
+
+Si vols saber més sobre el sistema hexadecimal pots fer un cop d'ull al tema corresponent dels apunts de Tecnologia industrial del curs vinent 
+
+\begin{center}
+\url{https://artur-sjo.github.io/Tecnologia_2n_Btx/Intro_digital.pdf}
+\end{center}
+
+
+\subsection{Colors rgb}
+En aquesta codificació les quantitats de vermell, verd i blau es donen sobre 1, és a dir tenim, per exemple
+$$(FF5733)\rightarrow(255,87,51)\rightarrow\left(\frac{255}{255},\frac{87}{255},\frac{51}{255}\right)=(1,0.34,0.2)$$
+
+Pots trobar una \emph{enorme} varietat de colors amb l'equivalència RGB i rgb que acabem de veure a la plana web
+\begin{center}
+\url{http://latexcolor.com/}
+\end{center}
+
+amb noms que el TeX no et reconeixerà, però malgrat tot sempre es poden establir definicions tal com hem vist abans.
+\subsection{Colors CMYK}
+L'espai de colors CMYK (cyan, magenta, yellow, black) és la que es fa servir en imatges impreses. És el que s'anomena quatricomia. En les pantalles i monitors el negre s'aconsegueix posant a zero la intensitat del vermell, verd i blau. En paper, necessitem el negre per tal de que es vegi aquest color, per això en CMYK es fan servir tres colors més el negre. En teoria, un document que s'ha d'acabar imprimint hauria de tenir tots els seus colors en CMYK, però a nivell no professional no cal que sigui així. 
+\bigskip
+
+Per exemple, el codi 
+
+\begin{verbatim}
+\definecolor{Lightblue}{cmyk}{1,0.7,0,0}
+\end{verbatim}
+\definecolor{Lightblue}{cmyk}{1,0.7,0,0}
+\textcolor{Lightblue}{genera aquest color (aplicat a text)}.
+\bigskip
+
+Recorda una vegada més, que les definicions dels colors són arbitràries.
+\subsection{Escala de grisos}
+El gris té una escala pròpia, de forma que podem obtenir totes les tonalitats des del blanc al negre. Per exemple
+
+\begin{verbatim}
+\definecolor{grisclar}{gray}{0.35}
+\end{verbatim}
+
+com sempre, el nom li posem nosaltres i el nombre que codifica la intensitat del gris ha d'estar entre 0 i 1.
+
+\subsection{Paquet xcolor}
+El paquet xcolor és molt potent i versàtil i ofereix la possibilitat de barrejar colors de diverses maneres. 
+\bigskip
+
+$\spadesuit$ Podem barrejar per exemple, dues parts de vermell amb sis de verd, una de blau i mitja de gris (com ho faria un pintor) per obtenir, mitjançant l'expressió
+
+\begin{verbatim}
+\fcolorbox{brown}{rgb:red,2;green,6;blue,1;gray,0.5}{prova}
+\end{verbatim}
+la següent \hyperref[sec:colorbox]{caixa de color}
+$$
+\fcolorbox{brown}{rgb:red,2;green,6;blue,1;gray,0.5}{prova}$$
+\clearpage
+
+$\spadesuit$ Podem barrejar colors segons el següent mètode
+\begin{verbatim}
+color1!p1!color2!p2!color3...
+\end{verbatim}
+aquesta seqüència barrejarà el $p1\%$ del color \emph{color1} amb el $(100-p1)\%$ del color \emph{color2} i del resultat, es prendrà el $p2\%$ per barrejar-lo amb el $(100-p2)\%$ del color $p3$.
+\bigskip
+
+Veiem alguns exemples
+\begin{itemize}
+\item
+L'expressió
+\begin{verbatim}
+red!50
+\end{verbatim}
+és equivalent a 
+\begin{verbatim}
+red!50!white
+\end{verbatim}
+i genera $50\,\%$ de color vermell barrejat amb $50\,\%$ de blanc
+$$\colorbox{red!50}{exemple 1}$$
+\item
+L'expressió
+\begin{verbatim}
+red!50!green
+\end{verbatim}
+genera $50\,\%$ de color vermell barrejat amb $50\,\%$ de color verd. No hi ha blanc afegit.
+$$\colorbox{red!50!green}{exemple 2}$$
+\item
+Si fem
+\begin{verbatim}
+red!20!green
+\end{verbatim}
+$$\colorbox{red!20!green}{exemple 3}$$
+genera $20\,\%$ de color vermell barrejat amb $80\,\%$ de color verd. No hi ha blanc afegit.
+\item
+Si ara fem
+\begin{verbatim}
+red!20!green!50
+\end{verbatim}
+que és equivalent a 
+\begin{verbatim}
+red!20!green!50!white
+\end{verbatim}
+$$\colorbox{red!20!green!50}{exemple 4}$$
+obtenim $20\,\%$ de color vermell barrejat amb $80\,\%$ de color verd que \emph{després} es barrejarà al $50\,\%$ amb blanc.
+\item
+L'expressió
+\begin{verbatim}
+red!100!green
+\end{verbatim}
+$$\colorbox{red!100!green}{exemple 5}$$
+``barreja'' el $100\,\%$ de vermell amb el $0\,\%$ de verd i evidentment, no té sentit fer-la servir. Té el mateix efecte escriure només 
+\begin{verbatim}
+red!100
+\end{verbatim}
+
+\item
+Podem obtenir barreges complexes, per exemple
+\begin{verbatim}
+red!20!green!15!yellow!15!teal!35!blue!25
+\end{verbatim}
+$$\colorbox{red!20!green!15!yellow!15!teal!35!blue!25}{exemple 6}$$
+\end{itemize}
+\bigskip
+
+Un color que acabem de veure, \emph{teal}, forma part del conjunt de colors que \emph{xcolor} permet invocar pel seu nom a TeX: \fcolorbox{black}{red}{$^{}\quad$} red, \fcolorbox{black}{green}{$^{}\quad$} green,
+\fcolorbox{black}{blue}{$^{}\quad$} blue,
+\fcolorbox{black}{cyan}{$^{}\quad$} cyan,
+\fcolorbox{black}{magenta}{$^{}\quad$} magenta,
+\fcolorbox{black}{yellow}{$^{}\quad$} yellow,
+\fcolorbox{black}{black}{$^{}\quad$} black,
+\fcolorbox{black}{gray}{$^{}\quad$} gray,
+\fcolorbox{black}{white}{$^{}\quad$} white,
+\fcolorbox{black}{darkgray}{$^{}\quad$} darkgray,
+\fcolorbox{black}{lightgray}{$^{}\quad$} lightgray,
+\fcolorbox{black}{brown}{$^{}\quad$} brown,
+\fcolorbox{black}{olive}{$^{}\quad$} olive,
+\fcolorbox{black}{orange}{$^{}\quad$} orange,
+\fcolorbox{black}{pink}{$^{}\quad$} pink,
+\fcolorbox{black}{purple}{$^{}\quad$} purple,
+\fcolorbox{black}{teal}{$^{}\quad$} teal,
+\fcolorbox{black}{violet}{$^{}\quad$} violet.
+
+\section{Fent servir els colors}
+\label{sec:us}
+Un cop saps referir-te als colors que vols utilitzar, les opcions típiques de treball són diverses.
+
+\subsection{Acolorir text} \textcolor{1}{Recorda que la referència la defineixes tu.} Jo he anomenat al color que he fet servir ``1'', però enlloc d'un número es pot posar el que sigui, per exemple un nom més descriptiu, \textcolor{caribbeangreen}{com aquest, (has de mirar el codi)}, que faci més fàcil identificar-lo després si es vol reutilitzar al document.
+\subsection{Caixes de color}
+\label{sec:colorbox}
+Les caixes de colors es fan servir per marcar text amb un color determinat. Les caixes poden tenir o no marc (de color diferent al de l'interior si es vol), i la sintaxi per construir-les la pots veure en els següents exemples
+\begin{itemize}
+\item
+El codi
+\begin{verbatim}
+\colorbox{cyan}{Prova de caixa}
+\end{verbatim}
+genera 
+\colorbox{cyan}{Prova de caixa}
+
+Recorda que entre altres, \emph{cyan} és un nom reconegut pel paquet \emph{xcolor} i per tant, es pot fer servir sense haver de definir-lo a partir dels seus valors RGB, rgb o CMYK.
+\item
+El codi
+\begin{verbatim}
+\colorbox[HTML]{FE1234}{Prova de caixa}
+\end{verbatim}
+genera
+\colorbox[HTML]{AE1234}{Prova de caixa}
+la caixa de color a partir del valor RGB especificat a l'espai de color que hi ha entre les claus $[\,]$, en aquest cas HTML.
+\item
+Similar a l'anterior, fent servir un altre espai de color (rgb)
+
+\begin{verbatim}
+\colorbox[rgb]{0.4,0.71,0.785}{Prova de caixa}
+\end{verbatim}
+\colorbox[rgb]{0.4,0.71,0.785}{Prova de caixa}
+\item
+Un exemple on hem canviat a més el color de la lletra
+
+\begin{verbatim}
+\colorbox[rgb]{0.6,0.51,0.8}{\textcolor[rgb]{0.32,0.31,0.35}{Prova de caixa}}
+\end{verbatim}
+\colorbox[rgb]{0.6,0.51,0.8}{\textcolor[rgb]{0.32,0.31,0.35}{Prova de caixa}}
+\item
+Cridant el color pel seu nom directament
+\begin{verbatim}
+\colorbox[rgb]{0.6,0.71,0.72}{\textcolor{white}{Prova de caixa}}
+\end{verbatim}
+\colorbox[rgb]{0.6,0.71,0.72}{\textcolor{white}{Prova de caixa}}
+\end{itemize}
+\clearpage
+Veiem ara un exemple de caixa de color amb marc. El seu ús és totalment anàleg als anteriors, la única diferència és que pel marc, cal especificar el color (cosa que es pot fer de formes diferents, tal com hem vist abans).
+
+\begin{verbatim}
+\fcolorbox{olive}[rgb]{0.6,0.71,0.72}{Prova de caixa}
+\end{verbatim}
+
+\fcolorbox{olive}[rgb]{0.6,0.71,0.72}{Prova de caixa}
+
+\subsection{Gràfics}
+També es poden fer servir en dibuixos del Ti\textit{k}Z. Per exemple, un rectangle amb vora d'un altre color. La variable \emph{draw} (veure codi) aquí codifica el color de la vora del rectangle
+\begin{center}
+\begin{tikzpicture}
+\filldraw[3,draw=red](-2,-1) rectangle (2,1);
+\end{tikzpicture}
+\end{center}
+
+o també si vols gradients amb dos colors
+
+\begin{center}
+\begin{tikzpicture}
+\shadedraw[left color=4,right color =7] (-1,1)rectangle(2,3);
+\end{tikzpicture}
+\end{center}
+o amb tres
+
+\begin{center}
+\begin{tikzpicture}
+\shade[left color=gradient1, right color=gradient3, middle color = gradient2] (0,0) rectangle (3,2);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\shade[bottom color=gradient1, top color=gradient3, middle color = gradient2] (0,0) rectangle (3,2);
+\end{tikzpicture}
+\end{center}
+
+La referència que jo faig servir sovint per gradients és
+
+\url{https://uigradients.com/#CrystalClear}
+
+En fi, volia explicar-te això breument i he pensat a fer-ho així perquè vegis com va tot i tambe pots remenar el codi i fer proves. Si hi cap dubte, m'ho fas saber.
+
+\end{document}
