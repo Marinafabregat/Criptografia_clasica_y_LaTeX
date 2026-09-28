@@ -24,8 +24,10 @@ latexmk -pdf TR.tex     # compila (ejecuta pdflatex y bibtex tantas veces como h
 latexmk -pdf -c TR.tex  # elimina los archivos auxiliares
 ```
 
-De forma manual, hacen falta dos pasadas para que las referencias cruzadas
-queden resueltas:
+De forma manual, la secuencia es `pdflatex` → `bibtex` → `pdflatex` → `pdflatex`,
+es decir, **tres** ejecuciones de `pdflatex`: la primera genera los archivos
+auxiliares, `bibtex` procesa la bibliografía y las dos siguientes resuelven las
+referencias cruzadas con los datos definitivos.
 
 ```bash
 pdflatex TR.tex
