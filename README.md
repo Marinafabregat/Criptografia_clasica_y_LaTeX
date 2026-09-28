@@ -7,7 +7,7 @@ una guía práctica de **LaTeX** con la parte matemática de los distintos cifra
 - **Tutor:** Artur Arroyo
 - **Curso:** 2019–2020
 - **Centro:** Colegio Sant Josep Obrer
-- **Idioma del documento:** español (`babel` con opción `spanish`)
+- **Nota:** 10/10
 
 ## Documento principal
 
